@@ -2,6 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { AppDataSource } from './data-source';
+import authRoutes from './routes/auth.routes';
+import subjectRoutes from './routes/subject.routes';
+import questionRoutes from './routes/question.routes';
 
 dotenv.config();
 
@@ -11,12 +14,23 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
+// Маршруты
+app.use('/api/auth', authRoutes);
+app.use('/api/subjects', subjectRoutes);
+app.use('/api/questions', questionRoutes);
+
 // Базовый роут для проверки
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Здесь позже добавим роутеры
+// Обработка 404
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: 'Маршрут не найден'
+  });
+});
 
 AppDataSource.initialize()
   .then(() => {
