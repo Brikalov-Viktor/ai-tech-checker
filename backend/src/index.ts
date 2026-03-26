@@ -5,6 +5,7 @@ import { AppDataSource } from './data-source';
 import authRoutes from './routes/auth.routes';
 import subjectRoutes from './routes/subject.routes';
 import questionRoutes from './routes/question.routes';
+import interviewRoutes from './routes/interview.routes';
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/subjects', subjectRoutes);
 app.use('/api/questions', questionRoutes);
+app.use('/api/interviews', interviewRoutes);
 
 // Базовый роут для проверки
 app.get('/health', (req, res) => {

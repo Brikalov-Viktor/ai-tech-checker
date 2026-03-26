@@ -46,6 +46,30 @@ export class QuestionService {
     return question;
   }
 
+  async getQuestionsPaginated(page: number = 1, limit: number = 10, subjectId?: number) {
+    const skip = (page - 1) * limit;
+    
+    const queryBuilder = this.questionRepository.createQueryBuilder('question')
+      .leftJoinAndSelect('question.subject', 'subject')
+      .skip(skip)
+      .take(limit)
+      .orderBy('question.id', 'DESC');
+    
+    if (subjectId) {
+      queryBuilder.andWhere('question.subjectId = :subjectId', { subjectId });
+    }
+    
+    const [questions, total] = await queryBuilder.getManyAndCount();
+    
+    return {
+      data: questions,
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit)
+    };
+  }
+
   async createQuestion(data: CreateQuestionDto) {
     // Проверяем, существует ли тема
     const subject = await this.subjectRepository.findOne({
