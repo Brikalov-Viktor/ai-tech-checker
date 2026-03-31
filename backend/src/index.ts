@@ -7,6 +7,7 @@ import subjectRoutes from './routes/subject.routes';
 import questionRoutes from './routes/question.routes';
 import interviewRoutes from './routes/interview.routes';
 import pdfRoutes from './routes/pdf.routes';
+import testRoutes from './routes/test.routes';
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use('/api/subjects', subjectRoutes);
 app.use('/api/questions', questionRoutes);
 app.use('/api/interviews', interviewRoutes);
 app.use('/api/pdf', pdfRoutes);
+app.use('/api/test', testRoutes);
 
 // Базовый роут для проверки
 app.get('/health', (req, res) => {

@@ -14,7 +14,8 @@
         "seed": "ts-node src/seeds/index.ts",
         "seed:users": "ts-node src/seeds/01-users.seed.ts",
         "seed:subjects": "ts-node src/seeds/02-subjects.seed.ts",
-        "seed:questions": "ts-node src/seeds/04-questions.seed.ts"
+        "seed:questions": "ts-node src/seeds/04-questions.seed.ts",
+        "test:ai": "ts-node src/scripts/test-ai.ts"
     },
     "dependencies": {
         "bcryptjs": "^2.4.3",
