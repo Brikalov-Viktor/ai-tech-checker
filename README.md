@@ -18,18 +18,31 @@
 
 ```bash
 docker-compose up -d
+```
 
+### 2. Запуск базы данных
+
+```bash
 cd backend
+```
 
 # Установите нужную версию Node (если используете nvm)
+```bash
 nvm use 20.19.1
+```
 
 # Установите зависимости
-npm install
 ```bash
-# Скопируйте .env.example в .env и заполните
-cp .env.example .env
+npm install
+```
 
+# Скопируйте .env.example в .env
+```bash
+cp .env.example .env
+```
+# Заполните .env
+
+```bash
 DB_HOST=localhost
 DB_PORT=5432
 DB_USER=postgres
@@ -44,8 +57,9 @@ PORT=3001
 # Получите ключ на https://platform.deepseek.com/
 DEEPSEEK_API_KEY=your-deepseek-api-key
 DEEPSEEK_MODEL=deepseek-chat
+```
 
-3. Настройка DeepSeek (AI)
+# 3. Настройка DeepSeek (AI)
 Зарегистрируйтесь на DeepSeek Platform
 
 В разделе "API Keys" создайте новый ключ
@@ -54,30 +68,44 @@ DEEPSEEK_MODEL=deepseek-chat
 
 При регистрации DeepSeek дает $5 бесплатно — этого достаточно для тестирования.
 
-4. Запуск бэкенда
-bash
-# Выполнить миграции
-npm run migration:run
+# 4. Запуск бэкенда
 
+# Выполнить миграции
+
+```bash
+npm run migration:run
+```
 # Заполнить базу тестовыми данными
+
+```bash
 npm run seed
+```
 
 # Запустить сервер
 npm run dev
 Сервер будет доступен на http://localhost:3001
 
-5. Запуск фронтенда
-bash
+### Запуск фронтенда
+
+```bash
 cd frontend
+```
 
 # Установите зависимости
+```bash
 npm install
+```
 
 # Создайте .env
+```bash
 echo "VITE_API_URL=http://localhost:3001/api" > .env
+```
 
 # Запустите приложение
+```bash
 npm run dev
+```
+
 Фронтенд будет доступен на http://localhost:3000
 
 Тестовые данные
