@@ -107,16 +107,16 @@ export class InterviewService {
     }
 
     // AI проверка ответа
-    const evaluation = await this.aiService.evaluateAnswer(question, answer);
+    const evaluation = await this.aiService.evaluateAnswer(question, data.answer);
 
     // Сохраняем ответ
     const userAnswer = this.userAnswerRepository.create({
-      interviewId,
-      questionId,
-      userAnswerText: answer,
-      aiMark: evaluation.mark,
-      aiFeedback: evaluation.feedback,
-      isCorrect: evaluation.isCorrect
+        interviewId,
+        questionId,
+        userAnswerText: data.answer,
+        aiMark: evaluation.mark,
+        aiFeedback: evaluation.feedback,
+        isCorrect: evaluation.isCorrect
     });
 
     await this.userAnswerRepository.save(userAnswer);
