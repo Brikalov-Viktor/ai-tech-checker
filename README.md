@@ -108,19 +108,24 @@ npm run dev
 
 Фронтенд будет доступен на http://localhost:3000
 
-Тестовые данные
-После npm run seed доступны пользователи:
+## Тестовые данные
 
-Логин	Пароль	Роль
-admin	admin123	admin
-ivan.petrov	user123	user
-elena.smirnova	user123	user
-Основные API
-Метод	Endpoint	Описание
-POST	/api/auth/register	Регистрация
-POST	/api/auth/login	Вход
-POST	/api/interviews/start	Начать интервью
-POST	/api/interviews/:id/answer	Ответить на вопрос
-POST	/api/interviews/:id/complete	Завершить интервью
-GET	/api/interviews/stats	Статистика
-GET	/api/pdf/interviews/:id/pdf	Скачать PDF отчет
+После `npm run seed` доступны пользователи:
+
+| Логин | Пароль | Роль |
+|-------|--------|------|
+| admin | admin123 | admin |
+| ivan.petrov | user123 | user |
+| elena.smirnova | user123 | user |
+
+## Основные API
+
+| Метод | Endpoint | Описание |
+|-------|----------|----------|
+| POST | `/api/auth/register` | Регистрация |
+| POST | `/api/auth/login` | Вход |
+| POST | `/api/interviews/start` | Начать интервью |
+| POST | `/api/interviews/:id/answer` | Ответить на вопрос |
+| POST | `/api/interviews/:id/complete` | Завершить интервью |
+| GET | `/api/interviews/stats` | Статистика |
+| GET | `/api/pdf/interviews/:id/pdf` | Скачать PDF отчет |
