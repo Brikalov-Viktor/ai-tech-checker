@@ -6,6 +6,7 @@ import { LoginPage } from './pages/LoginPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { GlobalStyles } from './styles/GlobalStyles';
 import { useAppSelector } from './store/hooks';
+import { InterviewPage } from './pages/InterviewPage';
 
 const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const token = useAppSelector(state => state.auth.token);
@@ -20,6 +21,16 @@ function AppContent() {
       <GlobalStyles />
       <Routes>
         <Route path="/login" element={!token ? <LoginPage /> : <Navigate to="/" />} />
+        <Route
+          path="/interview"
+          element={
+            <PrivateRoute>
+              <Layout>
+                <InterviewPage />
+              </Layout>
+            </PrivateRoute>
+          }
+        />
         <Route
           path="/"
           element={

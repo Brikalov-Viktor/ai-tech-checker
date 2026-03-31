@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { logout } from '../../store/slices/authSlice';
 import { Button } from './Button';
@@ -23,6 +24,25 @@ const Logo = styled.h1`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
+  cursor: pointer;
+`;
+
+const Nav = styled.nav`
+  display: flex;
+  gap: 24px;
+  margin-right: auto;
+  margin-left: 32px;
+`;
+
+const NavLink = styled(Link)`
+  color: #666;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+  
+  &:hover {
+    color: #667eea;
+  }
 `;
 
 const UserInfo = styled.div`
@@ -48,23 +68,36 @@ interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const user = useAppSelector(state => state.auth.user);
   
   const handleLogout = () => {
     dispatch(logout());
+    navigate('/login');
+  };
+  
+  const handleLogoClick = () => {
+    navigate('/');
   };
   
   return (
     <Container>
       <Header>
-        <Logo>AI Tech Checker</Logo>
+        <Logo onClick={handleLogoClick}>AI Tech Checker</Logo>
         {user && (
-          <UserInfo>
-            <UserName>{user.name}</UserName>
-            <Button variant="secondary" onClick={handleLogout}>
-              Выйти
-            </Button>
-          </UserInfo>
+          <>
+            <Nav>
+              <NavLink to="/">Главная</NavLink>
+              <NavLink to="/interview">Пройти интервью</NavLink>
+              <NavLink to="/history">История</NavLink>
+            </Nav>
+            <UserInfo>
+              <UserName>{user.name}</UserName>
+              <Button variant="secondary" onClick={handleLogout}>
+                Выйти
+              </Button>
+            </UserInfo>
+          </>
         )}
       </Header>
       <Content>{children}</Content>

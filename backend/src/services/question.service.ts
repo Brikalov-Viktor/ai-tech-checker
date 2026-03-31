@@ -122,7 +122,8 @@ export class QuestionService {
   }
 
   async getRandomQuestions(limit: number = 10, subjectId?: number, difficulty?: QuestionDifficulty) {
-    const queryBuilder = this.questionRepository.createQueryBuilder('question');
+    const queryBuilder = this.questionRepository.createQueryBuilder('question')
+      .leftJoinAndSelect('question.subject', 'subject'); // Добавляем join с subject
     
     if (subjectId) {
       queryBuilder.andWhere('question.subjectId = :subjectId', { subjectId });
